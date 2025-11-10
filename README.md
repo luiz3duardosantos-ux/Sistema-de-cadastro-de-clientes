@@ -21,8 +21,9 @@ def conectar(self):
 
 
 
---------------CRUD(ja imbutidos com método conectar)--------------------
--------CREATE-----------------------------------
+--------------CRUD(ja imbutidos com método conectar)---------
+
+-------------------CREATE-----------------
 def create(self,cliente):
    con = self.conectar()
    cur = con.cursor()
