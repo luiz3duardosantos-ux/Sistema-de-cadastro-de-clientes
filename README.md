@@ -12,7 +12,7 @@ class Cliente:
 
 
 Classe ClienteDAO: para cumprir os métodos CRUD e conectar com o banco de dados
-------init e método conctar-------------------------------
+------init e método conctar-----------------
 def __init__(self, db_name = "prototipo.db"):
         self.db_name = db_name
     
