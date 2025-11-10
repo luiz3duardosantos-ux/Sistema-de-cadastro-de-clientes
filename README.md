@@ -4,6 +4,7 @@
 Classe Cliente: ligada diretamente aos objetos
 
 class Cliente:
+    class Cliente:
     def __init__(self, id, nome, email,telefone ):
         self.id = id
         self.nome = nome
@@ -16,7 +17,7 @@ Classe ClienteDAO: para cumprir os métodos CRUD e conectar com o banco de dados
 def __init__(self, db_name = "prototipo.db"):
         self.db_name = db_name
     
-def conectar(self):
+    def conectar(self):
         return sqlite3.connect(self.db_name)
 
 
@@ -25,23 +26,23 @@ def conectar(self):
 
 -------------------CREATE-----------------
 def create(self,cliente):
-   con = self.conectar()
-   cur = con.cursor()
+        con = self.conectar()
+        cur = con.cursor()
         
-   cur.execute(
+        cur.execute(
             """CREATE TABLE IF NOT EXISTS Cliente(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nome TEXT,
             email TEXT,
             telefone INTEGER
-   );
-   """)
+         );
+         """)
         
-   cur.execute(
+        cur.execute(
         "INSERT INTO Cliente (nome, email,telefone) VALUES (?,?,?)" ,(cliente.nome, cliente.email, cliente.telefone))
         
-   con.commit()
-   con.close()
+        con.commit()
+        con.close()
 
 
 --------READ--------------------------
@@ -50,15 +51,15 @@ def read(self):
         con = self.conectar()
         cur = con.cursor()
         
-   cur.execute('SELECT * FROM Cliente')
+        cur.execute('SELECT * FROM Cliente')
         linhas = cur.fetchall()
         lista = []
         for l in linhas:
             cliente = Cliente(l[0], l[1], l[2], l[3])
             lista.append(cliente)
             
-  con.close() 
-  return lista
+        con.close()
+        return lista
 
 ---------UPDATE-------------------------
 
@@ -66,10 +67,10 @@ def update(self,cliente):
         con =self.conectar()
         cur = con.cursor() 
         
-   cur.execute('UPDATE Cliente SET nome = ?, email = ?, telefone = ? WHERE id = ?', (cliente.nome,cliente.email,cliente.telefone, cliente.id))
+        cur.execute('UPDATE Cliente SET nome = ?, email = ?, telefone = ? WHERE id = ?', (cliente.nome,cliente.email,cliente.telefone, cliente.id))
         
-   con.commit()
-   con.close()
+        con.commit()
+        con.close()
 
 
    ---------DELETE-------------------------
@@ -78,7 +79,7 @@ def delete(self,id):
          con = self.conectar()
          cur = con.cursor()
          
-   cur.execute('DELETE FROM Cliente WHERE id = ?', (id,))
+         cur.execute('DELETE FROM Cliente WHERE id = ?', (id,))
          
-   con.commit()
-   con.close()
+         con.commit()
+         con.close()
